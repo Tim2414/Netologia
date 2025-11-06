@@ -27,7 +27,7 @@ long long int fibonacci(long long int num)
     if (num == 0) { return 0; }
     if (num == 1) { return 1; }
 
-    for (int count{2}; count < num; count++)
+    for (int count{2}; count <= num; count++)
     {
         sum = num1 + num2;
         num1 = num2;
@@ -36,5 +36,6 @@ long long int fibonacci(long long int num)
 
     return sum;
 }
+
 
 
