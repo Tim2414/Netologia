@@ -11,13 +11,10 @@ int main()
     std::cout << "Введите число: ";
     std::cin >> num;
     std::cout << "Числа Фибоначчи:";
-
-    if (num > 2)
+    
+    for (int count{}; count < num; count++)
     {
-        for (int count{}; count < num; count++)
-        {
-            std::cout << " " << fibonacci(count);
-        }
+        std::cout << " " << fibonacci(count);
     }
 
     return EXIT_SUCCESS;
@@ -39,3 +36,4 @@ long long int fibonacci(long long int num)
 
     return sum;
 }
+
