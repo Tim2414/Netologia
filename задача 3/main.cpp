@@ -6,7 +6,7 @@ int main()
 {
     SetConsoleOutputCP(1251);
 
-    int size{10};
+    int const size{10};
     int array[size] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
     std::cout << "До функции reverse: ";
@@ -43,3 +43,4 @@ void reverse(int* array, int size)
         ++counterRevers;
     }
 }
+
