@@ -29,18 +29,13 @@ int main()
 
 void reverse(int* array, int size)
 {
-    int arrayReverse[size];
-    int counterRevers{0};
 
-    for(int counter{}; counter < size; counter++)
+    for(int counter{}; counter < size/2; counter++)
     {
-        arrayReverse[counter] = array[counter];
+        int rev = array[counter];
+        array[counter] = array[size - counter - 1];
+        array[size - counter - 1] = rev;
     }
 
-    for(int counter{size-1}; counter >= 0; counter--)
-    {
-        array[counterRevers] = arrayReverse[counter];
-        ++counterRevers;
-    }
 }
 
