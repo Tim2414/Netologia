@@ -8,62 +8,89 @@ private:
     int count{1};
 
 public:
-    Counter(int setCounter = 1) : count{setCounter}{}
+    Counter() = default;
 
-    void counterPlus(){ count++; }
-    void counterMinus(){ count--; }
-    int getCounter(){ return count; }
+    Counter(int setCounter) : count{setCounter} {}
+
+    void counterPlus()
+    {
+        count++;
+    }
+
+    void counterMinus()
+    {
+        count--;
+    }
+
+    int getCounter() const
+    {
+        return count;
+    }
 };
 
-void counterComand(std::string str, Counter& varCounter);
+void counterCommand(const std::string& command, Counter& counter);
 
 int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    std::string startWay{" "};
-    std::string exitWay{" "};
-    int size{1};
+    std::string startWay{};
+    std::string command{};
+
+    Counter version1; 
 
     std::cout << "Вы хотите указать начальное значение счётчика? Введите да или нет: ";
 
-    do
+    while (true)
     {
         std::cin >> startWay;
 
-        if(startWay == "да")
+        if (startWay == "да")
         {
+            int size{};
             std::cout << "Введите начальное значение счётчика: ";
             std::cin >> size;
+
+            version1 = Counter(size);
+            break;
         }
-        else if(startWay == "нет"){ break; }
+        else if (startWay == "нет")
+        {
+            break;
+        }
         else
         {
-            std::cout << "Вы ввели неверное слово! Введите верное: ";
+            std::cout << "Вы ввели неверное слово! Введите да или нет: ";
         }
-
-    } while(startWay != "да");
-
-    Counter version1{size};
+    }
 
     do
     {
         std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
-        std::cin >> exitWay;
-        counterComand(exitWay, version1);
+        std::cin >> command;
 
-    } while(exitWay != "х" && exitWay != "x");
+        counterCommand(command, version1);
+
+    } while (command != "x" && command != "х");
 
     std::cout << "До свидания!" << std::endl;
 
     return EXIT_SUCCESS;
 }
 
-void counterComand(std::string str, Counter& varCounter)
+void counterCommand(const std::string& command, Counter& counter)
 {
-    if (str == "+"){ varCounter.counterPlus(); }
-    else if (str == "-"){ varCounter.counterMinus(); }
-    else if (str == "="){ std::cout << varCounter.getCounter() << std::endl; }
-    else{ return; }
+    if (command == "+")
+    {
+        counter.counterPlus();
+    }
+    else if (command == "-")
+    {
+        counter.counterMinus();
+    }
+    else if (command == "=")
+    {
+        std::cout << counter.getCounter() << std::endl;
+    }
 }
