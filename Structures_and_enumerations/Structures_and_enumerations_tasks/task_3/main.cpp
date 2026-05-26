@@ -2,7 +2,6 @@
 #include <windows.h>
 #include <string>
 
-
 struct Adress
 {
     std::string city{};
@@ -10,21 +9,9 @@ struct Adress
     int houseNumber{};
     int flatNumber{};
     long index{};
-
-    Adress( std::string city = " ", std::string street = " ", int houseNum = 0, int flatNum = 0, long index = 0) :
-    city{city}, street{street}, houseNumber{houseNum}, flatNumber{flatNum}, index{index}{}
-
-    void outputAdress()
-    {
-        std::cout << "Город: " << city << std::endl;
-        std::cout << "Улица: " << street << std::endl;
-        std::cout << "Номер дома: " << houseNumber << std::endl;
-        std::cout << "Номер квартиры: " << flatNumber << std::endl;
-        std::cout << "Индекс: " << index << std::endl;
-    }
-
 };
 
+void outputAdress(const Adress& adress);
 
 int main()
 {
@@ -34,8 +21,18 @@ int main()
     Adress user1{"Москва", "Арбат", 12, 8, 123456};
     Adress user2{"Ижевск", "Пушкина", 59, 143, 953769};
 
-    user1.outputAdress();
-    user2.outputAdress();
+    outputAdress(user1);
+    std::cout << std::endl;
+    outputAdress(user2);
 
     return EXIT_SUCCESS;
+}
+
+void outputAdress(const Adress& adress)
+{
+    std::cout << "Город: " << adress.city << std::endl;
+    std::cout << "Улица: " << adress.street << std::endl;
+    std::cout << "Номер дома: " << adress.houseNumber << std::endl;
+    std::cout << "Номер квартиры: " << adress.flatNumber << std::endl;
+    std::cout << "Индекс: " << adress.index << std::endl;
 }
