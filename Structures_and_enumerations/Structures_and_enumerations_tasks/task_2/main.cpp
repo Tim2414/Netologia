@@ -8,31 +8,9 @@ struct bankAccount
     long long accountNumber{};
     std::string name{};
     long double balance{};
-
-    bankAccount(long long acc = 0, std::string name = " ", long double bal = 0) :  accountNumber{acc}, name{name}, balance{bal}{}
-
-    void makeAccount()
-    {
-        std::cout << "Введите номер счёта: ";
-        std::cin >> accountNumber;
-        std::cout << "Введите имя владельца: ";
-        std::cin >> name;
-        std::cout << "Введите баланс: ";
-        std::cin >> balance;
-    }
-
-    void changeBalance()
-    {
-        std::cout << "Введите новый баланс: ";
-        std::cin >> balance;
-    }
-
-    void outputAccountData()
-    {
-        std::cout << "Ваш счёт: " << name << ", " << accountNumber << ", "<< std::fixed << std::setprecision(3) << balance << std::endl;
-    }
 };
 
+void changeBalance(bankAccount& account, long double newBalance);
 
 int main()
 {
@@ -41,9 +19,31 @@ int main()
 
     bankAccount user1{};
 
-    user1.makeAccount();
-    user1.changeBalance();
-    user1.outputAccountData();
+    std::cout << "Введите номер счёта: ";
+    std::cin >> user1.accountNumber;
+
+    std::cout << "Введите имя владельца: ";
+    std::cin >> user1.name;
+
+    std::cout << "Введите баланс: ";
+    std::cin >> user1.balance;
+
+    long double newBalance{};
+    std::cout << "Введите новый баланс: ";
+    std::cin >> newBalance;
+
+    changeBalance(user1, newBalance);
+
+    std::cout << "Ваш счёт: "
+              << user1.name << ", "
+              << user1.accountNumber << ", "
+              << std::fixed << std::setprecision(3)
+              << user1.balance << std::endl;
 
     return EXIT_SUCCESS;
+}
+
+void changeBalance(bankAccount& account, long double newBalance)
+{
+    account.balance = newBalance;
 }
